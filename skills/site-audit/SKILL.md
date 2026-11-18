@@ -13,7 +13,7 @@ node bin/site-audit.mjs run https://example.com --gsc treg      # or --gsc googl
 node bin/site-audit.mjs run https://example.com --ai --budget 0.10   # adds the AI layer, paid
 ```
 
-- Ask before `--ai`: it spends money (about $0.06 for 250 pages, measured). Say the number of indexable pages and the budget. `--dry` costs nothing and shows the requests.
+- Ask before `--ai`: it spends money (about $0.06 for 250 pages, measured). Say the number of indexable pages and the budget. `--dry` costs nothing and prints the worst case; `--budget` is a hard cap, never exceeded.
 - A large site: start with `--max 2000`, or `--include '^https://example.com/blog/'`.
 - Output: `audits/<host>/<date>/summary.json`, `report.md`, `crawl.db`.
 

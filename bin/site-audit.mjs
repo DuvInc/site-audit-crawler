@@ -29,7 +29,8 @@ Render    --sample 20                         (Chrome: installed Google Chrome, 
 GSC       --gsc google|treg  --days 90  --inspect 40  --property sc-domain:example.com
           google: GSC_ACCESS_TOKEN, or GOOGLE_APPLICATION_CREDENTIALS (service account key file)
           treg:   treg connections connect --provider google-search-console
-AI        --budget 0.5  --pilot 5  --dry  --steps taxonomy,pages,queries,cannibal,links
+AI        --budget 0.5 (a hard cap: never exceeded)  --pilot 5  --dry (prints the worst case)
+          --chat-tier flex|normal (flex: half price, slower)  --steps taxonomy,pages,queries,cannibal,links
           --decision-model typesafe/jev-1.13  --chat-model openai/gpt-6-luna
           OPENROUTER_API_KEY (and optionally OPENROUTER_BASE_URL)
 `;
@@ -37,7 +38,7 @@ AI        --budget 0.5  --pilot 5  --dry  --steps taxonomy,pages,queries,canniba
 const argv = process.argv.slice(2);
 const has = (name) => argv.includes(`--${name}`);
 const opt = (name, def) => (has(name) ? argv[argv.indexOf(`--${name}`) + 1] : def);
-const valued = new Set(['max', 'concurrency', 'include', 'exclude', 'user-agent', 'out', 'dir', 'gsc', 'sample', 'days', 'inspect', 'property', 'budget', 'pilot', 'steps', 'decision-model', 'chat-model']);
+const valued = new Set(['chat-tier', 'max', 'concurrency', 'include', 'exclude', 'user-agent', 'out', 'dir', 'gsc', 'sample', 'days', 'inspect', 'property', 'budget', 'pilot', 'steps', 'decision-model', 'chat-model']);
 const positional = argv.filter((a, i) => !a.startsWith('--') && !(i > 0 && argv[i - 1].startsWith('--') && valued.has(argv[i - 1].slice(2))));
 const [command, ...args] = positional;
 
@@ -122,13 +123,17 @@ async function doGsc(dir, source) {
 async function doAi(dir) {
   const { runAi, AI_DEFAULTS } = await lib.ai();
   const dry = has('dry');
-  const client = dry ? null : (await lib.openrouter()).openRouterClient({
+  const or = await lib.openrouter();
+  const baseUrl = process.env.OPENROUTER_BASE_URL ? { baseUrl: process.env.OPENROUTER_BASE_URL } : {};
+  const client = dry ? null : or.openRouterClient({
     apiKey: process.env.OPENROUTER_API_KEY,
     ...(process.env.OPENROUTER_BASE_URL ? { baseUrl: process.env.OPENROUTER_BASE_URL } : {}),
   });
   const r = await runAi(dir, {
     client,
+    pricing: client ?? or.openRouterPricing(baseUrl),
     dry,
+    chatTier: opt('chat-tier', AI_DEFAULTS.chatTier),
     budget: Number(opt('budget', AI_DEFAULTS.budget)),
     pilot: Number(opt('pilot', 0)),
     steps: opt('steps') ? opt('steps').split(',') : AI_DEFAULTS.steps,
@@ -136,7 +141,9 @@ async function doAi(dir) {
     chatModel: opt('chat-model', AI_DEFAULTS.chatModel),
     onLog: log,
   });
-  log(`AI: $${r.spent.toFixed(4)} this run, $${r.spentAllRuns.toFixed(4)} over every run that shares the cache`);
+  log(dry
+    ? `AI (dry): at most $${r.worstCase.toFixed(4)} for what is not cached yet, nothing sent`
+    : `AI: $${r.spent.toFixed(4)} this run (hard cap $${opt('budget', AI_DEFAULTS.budget)}), $${r.spentAllRuns.toFixed(4)} over every run that shares the cache`);
 }
 
 const need = (v, what) => {

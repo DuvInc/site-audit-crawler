@@ -94,7 +94,9 @@ The property is found among the ones your account can read (`sc-domain:` first, 
 
 ## The AI layer
 
-Optional, paid, capped. It needs an [OpenRouter](https://openrouter.ai) key in `OPENROUTER_API_KEY`. Give the key a credit limit in OpenRouter's settings: the tool caps each run with `--budget`, the limit caps everything else.
+Optional, paid, capped. It needs an [OpenRouter](https://openrouter.ai) key in `OPENROUTER_API_KEY`.
+
+**`--budget` is a hard cap in dollars for the run (default 0.50).** Before each call, the tool reserves that call's worst case at the listed price (input counted generously, output at its maximum) and sends it only if everything already spent, plus every call in flight, plus this one, still fits. On lookio.app the worst case reserved was 2 to 10 times the real cost, so a full run stays well under it. `--dry` prints the worst case of a run without sending anything. A key credit limit in OpenRouter's settings is still a good second fence.
 
 | Step | Model | What it does |
 | --- | --- | --- |
@@ -104,9 +106,9 @@ Optional, paid, capped. It needs an [OpenRouter](https://openrouter.ai) key in `
 | `cannibal` | decision, one page and its candidates per call | do two pages with close target queries answer the same search? |
 | `links` | decision, one target and its passages per call | would linking this phrase, already in the text, to that page help the reader? |
 
-Defaults: `typesafe/jev-1.13` as the decision model (input billed, output free, through OpenRouter's Decisions API, still in alpha) and `openai/gpt-6-luna` as the chat model with reasoning off. Both can be changed (`--decision-model`, `--chat-model`). Every answer is cached by a hash of the exact request in `audits/<host>/ai-cache.db`; `--dry` shows the requests without sending them and `--pilot 5` sends five pages.
+Defaults: `typesafe/jev-1.13` as the decision model (input billed, output free, through OpenRouter's Decisions API, still in alpha) and `openai/gpt-6-luna` as the chat model with reasoning off, on OpenRouter's **Flex tier**: the same model at about half the price, answering in about 15 s instead of 2 because it runs on spare capacity; when Flex has none, the call goes to the normal tier. `--chat-tier normal` skips Flex. Both can be changed (`--decision-model`, `--chat-model`). Every answer is cached by a hash of the exact request in `audits/<host>/ai-cache.db`; `--dry` shows the requests without sending them and `--pilot 5` sends five pages.
 
-**What it cost, measured** (OpenRouter's reported cost per call, November 2026):
+**What it cost, measured** (OpenRouter's reported cost per call, November 2026, chat steps on the normal tier; Flex halves the taxonomy and queries columns):
 
 | Site | Pages | taxonomy | pages | queries | cannibal | links | Total |
 | --- | --- | --- | --- | --- | --- | --- | --- |

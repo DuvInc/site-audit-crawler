@@ -17,7 +17,7 @@ lib/
   gsc.mjs             Search Console import, transport injected
   google.mjs          transport: Google's API (service account JWT or access token)
   treg.mjs            transport: the treg CLI
-  ai.mjs              the AI layer, client injected, cache and per-run budget
+  ai.mjs              the AI layer, client injected, cache, hard budget cap
   openrouter.mjs      the model client
   compare.mjs         two analysed crawls, what changed
   index.mjs           everything in one import
@@ -44,7 +44,7 @@ node bin/site-audit.mjs --help
 3. **A rule is one line in `RULES` when SQL can say it** (`[code, category, priority, kind, label, sql]`, the SQL returns `url, detail`). Only what needs a walk (redirect chains, hreflang pairs, Search Console curves) is code. Every new rule gets a planted case in `test/fixture-site.mjs` and an assertion.
 4. **Every threshold is sourced in `docs/thresholds.md`, or listed there as a convention.** A threshold change cites what changed.
 5. **The two chat prompts in `PROMPTS` (lib/ai.mjs) are part of the cache key.** Changing one byte makes the next run pay again for every page. The decision questions are part of the key too.
-6. **The budget is per run, in dollars, measured from OpenRouter's reported cost.** It stops the run before the next call once reached; what was paid for stays in the cache.
+6. **The budget is a hard cap per run.** Each call reserves its worst case at the listed price before it is sent (`worstCase` in `lib/ai.mjs`: input as one token per two UTF-8 bytes plus 500, output at `max_tokens`, chat calls twice for the JSON retry, normal tier price even on Flex). A call billed above its reservation stops every further call. A new model call must reserve the same way; no call is sent without a known price. What was paid for stays in the cache.
 7. **Search Console totals are read without dimension.** Never sum per-query or per-page rows to make a total.
 8. **No new dependency without an issue first.** cheerio is the only hard one; playwright-core and axe-core are optional and loaded only by `render`.
 9. **English, no em dashes, comments say why.**
