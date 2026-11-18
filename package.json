@@ -1,0 +1,38 @@
+{
+  "name": "site-audit-crawler",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Crawl a website into one SQLite file and audit it: about 150 technical, SEO and AI-readiness controls with sourced thresholds, Search Console joined by URL, and an optional AI layer for a few cents per site.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "bin": {
+    "site-audit": "./bin/site-audit.mjs"
+  },
+  "exports": {
+    ".": "./lib/index.mjs",
+    "./crawl": "./lib/crawl.mjs",
+    "./analyze": "./lib/analyze.mjs",
+    "./render": "./lib/render.mjs",
+    "./gsc": "./lib/gsc.mjs",
+    "./google": "./lib/google.mjs",
+    "./treg": "./lib/treg.mjs",
+    "./ai": "./lib/ai.mjs",
+    "./openrouter": "./lib/openrouter.mjs",
+    "./compare": "./lib/compare.mjs"
+  },
+  "scripts": {
+    "audit": "node bin/site-audit.mjs run",
+    "example": "node --no-warnings test/make-example.mjs",
+    "test": "node --no-warnings --test --test-force-exit test/*.test.mjs"
+  },
+  "dependencies": {
+    "cheerio": "^1.2.0"
+  },
+  "optionalDependencies": {
+    "axe-core": "^4.14.1",
+    "playwright-core": "^1.65.1"
+  }
+}

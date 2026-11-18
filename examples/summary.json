@@ -1,0 +1,1506 @@
+{
+  "site": "http://localhost:4321/",
+  "crawled_at": "2026-01-01T00:00:00.000Z",
+  "seconds": 0,
+  "user_agent": "Mozilla/5.0 (compatible; SiteAuditCrawler/1.0; +https://github.com/DuvInc/site-audit-crawler)",
+  "urls": {
+    "total": 21,
+    "internal": 20,
+    "external": 1,
+    "skipped_over_max": 0,
+    "by_type": [
+      {
+        "internal": 1,
+        "type": "html",
+        "n": 12
+      },
+      {
+        "internal": 1,
+        "type": "unknown",
+        "n": 6
+      },
+      {
+        "internal": 1,
+        "type": "image",
+        "n": 2
+      },
+      {
+        "internal": 0,
+        "type": "html",
+        "n": 1
+      }
+    ],
+    "by_status": [
+      {
+        "internal": 1,
+        "status": null,
+        "n": 1
+      },
+      {
+        "internal": 1,
+        "status": 200,
+        "n": 13
+      },
+      {
+        "internal": 1,
+        "status": 301,
+        "n": 3
+      },
+      {
+        "internal": 1,
+        "status": 302,
+        "n": 1
+      },
+      {
+        "internal": 1,
+        "status": 307,
+        "n": 1
+      },
+      {
+        "internal": 1,
+        "status": 404,
+        "n": 1
+      },
+      {
+        "internal": 0,
+        "status": 404,
+        "n": 1
+      }
+    ]
+  },
+  "html_pages": {
+    "total": 12,
+    "indexability": [
+      {
+        "indexability": "Indexable",
+        "n": 9
+      },
+      {
+        "indexability": "Noindex",
+        "n": 1
+      },
+      {
+        "indexability": "Client error",
+        "n": 1
+      },
+      {
+        "indexability": "Canonicalised",
+        "n": 1
+      }
+    ],
+    "by_depth": [
+      {
+        "depth": null,
+        "n": 1
+      },
+      {
+        "depth": 0,
+        "n": 1
+      },
+      {
+        "depth": 1,
+        "n": 9
+      }
+    ],
+    "by_lang": [
+      {
+        "lang": "en",
+        "n": 10
+      },
+      {
+        "lang": "fr",
+        "n": 1
+      }
+    ],
+    "words_median": 226,
+    "ttfb_ms_median": 0,
+    "html_kb_median": 1
+  },
+  "sitemaps": [
+    {
+      "url": "http://localhost:4321/sitemap.xml",
+      "status": 200,
+      "kind": "urlset",
+      "urls": 4
+    }
+  ],
+  "links": [
+    {
+      "type": "hyperlink",
+      "n": 49
+    },
+    {
+      "type": "redirect",
+      "n": 5
+    },
+    {
+      "type": "hreflang",
+      "n": 4
+    },
+    {
+      "type": "canonical",
+      "n": 2
+    },
+    {
+      "type": "og-image",
+      "n": 1
+    },
+    {
+      "type": "image",
+      "n": 1
+    }
+  ],
+  "schema_types": [
+    {
+      "type": "Person",
+      "pages": 1
+    },
+    {
+      "type": "Article",
+      "pages": 1
+    }
+  ],
+  "top_link_score": [
+    {
+      "url": "http://localhost:4321/",
+      "link_score": 100,
+      "unique_inlinks": 11,
+      "depth": 0
+    },
+    {
+      "url": "http://localhost:4321/about",
+      "link_score": 91.3,
+      "unique_inlinks": 11,
+      "depth": 1
+    },
+    {
+      "url": "http://localhost:4321/team",
+      "link_score": 91.3,
+      "unique_inlinks": 11,
+      "depth": 1
+    },
+    {
+      "url": "http://localhost:4321/blog/post-1",
+      "link_score": 35.6,
+      "unique_inlinks": 1,
+      "depth": 1
+    },
+    {
+      "url": "http://localhost:4321/en/",
+      "link_score": 35.6,
+      "unique_inlinks": 1,
+      "depth": 1
+    },
+    {
+      "url": "http://localhost:4321/fr/",
+      "link_score": 35.6,
+      "unique_inlinks": 1,
+      "depth": 1
+    },
+    {
+      "url": "http://localhost:4321/dup-a",
+      "link_score": 35.6,
+      "unique_inlinks": 1,
+      "depth": 1
+    },
+    {
+      "url": "http://localhost:4321/dup-b",
+      "link_score": 35.6,
+      "unique_inlinks": 1,
+      "depth": 1
+    },
+    {
+      "url": "http://localhost:4321/orphan",
+      "link_score": 0,
+      "unique_inlinks": 0,
+      "depth": null
+    }
+  ],
+  "weakest_linked": [
+    {
+      "url": "http://localhost:4321/orphan",
+      "link_score": 0,
+      "unique_inlinks": 0,
+      "depth": null
+    },
+    {
+      "url": "http://localhost:4321/blog/post-1",
+      "link_score": 35.6,
+      "unique_inlinks": 1,
+      "depth": 1
+    },
+    {
+      "url": "http://localhost:4321/en/",
+      "link_score": 35.6,
+      "unique_inlinks": 1,
+      "depth": 1
+    },
+    {
+      "url": "http://localhost:4321/fr/",
+      "link_score": 35.6,
+      "unique_inlinks": 1,
+      "depth": 1
+    },
+    {
+      "url": "http://localhost:4321/dup-a",
+      "link_score": 35.6,
+      "unique_inlinks": 1,
+      "depth": 1
+    },
+    {
+      "url": "http://localhost:4321/dup-b",
+      "link_score": 35.6,
+      "unique_inlinks": 1,
+      "depth": 1
+    },
+    {
+      "url": "http://localhost:4321/about",
+      "link_score": 91.3,
+      "unique_inlinks": 11,
+      "depth": 1
+    },
+    {
+      "url": "http://localhost:4321/team",
+      "link_score": 91.3,
+      "unique_inlinks": 11,
+      "depth": 1
+    },
+    {
+      "url": "http://localhost:4321/",
+      "link_score": 100,
+      "unique_inlinks": 11,
+      "depth": 0
+    }
+  ],
+  "slowest": [
+    {
+      "url": "http://localhost:4321/team",
+      "ttfb_ms": 1
+    },
+    {
+      "url": "http://localhost:4321/",
+      "ttfb_ms": 0
+    },
+    {
+      "url": "http://localhost:4321/about",
+      "ttfb_ms": 0
+    },
+    {
+      "url": "http://localhost:4321/blog/post-1",
+      "ttfb_ms": 0
+    },
+    {
+      "url": "http://localhost:4321/noindex-page",
+      "ttfb_ms": 0
+    },
+    {
+      "url": "http://localhost:4321/canonicalised",
+      "ttfb_ms": 0
+    },
+    {
+      "url": "http://localhost:4321/en/",
+      "ttfb_ms": 0
+    },
+    {
+      "url": "http://localhost:4321/fr/",
+      "ttfb_ms": 0
+    },
+    {
+      "url": "http://localhost:4321/dup-a",
+      "ttfb_ms": 0
+    },
+    {
+      "url": "http://localhost:4321/dup-b",
+      "ttfb_ms": 0
+    }
+  ],
+  "heaviest_html": [
+    {
+      "url": "http://localhost:4321/blog/post-1",
+      "kb": 4,
+      "word_count": 565,
+      "dom_nodes": 17
+    },
+    {
+      "url": "http://localhost:4321/",
+      "kb": 2,
+      "word_count": 292,
+      "dom_nodes": 36
+    },
+    {
+      "url": "http://localhost:4321/en/",
+      "kb": 1,
+      "word_count": 220,
+      "dom_nodes": 18
+    },
+    {
+      "url": "http://localhost:4321/dup-b",
+      "kb": 1,
+      "word_count": 240,
+      "dom_nodes": 15
+    },
+    {
+      "url": "http://localhost:4321/dup-a",
+      "kb": 1,
+      "word_count": 240,
+      "dom_nodes": 15
+    },
+    {
+      "url": "http://localhost:4321/fr/",
+      "kb": 1,
+      "word_count": 220,
+      "dom_nodes": 16
+    },
+    {
+      "url": "http://localhost:4321/team",
+      "kb": 1,
+      "word_count": 231,
+      "dom_nodes": 15
+    },
+    {
+      "url": "http://localhost:4321/noindex-page",
+      "kb": 1,
+      "word_count": 220,
+      "dom_nodes": 16
+    },
+    {
+      "url": "http://localhost:4321/canonicalised",
+      "kb": 1,
+      "word_count": 220,
+      "dom_nodes": 16
+    },
+    {
+      "url": "http://localhost:4321/orphan",
+      "kb": 1,
+      "word_count": 220,
+      "dom_nodes": 15
+    }
+  ],
+  "rules_run": 121,
+  "ai_readiness": {
+    "llms_txt": {
+      "status": 404,
+      "content_type": "text/html",
+      "bytes": 57,
+      "vary": null
+    },
+    "llms_full_txt": {
+      "status": 404,
+      "content_type": "text/html",
+      "bytes": 57,
+      "vary": null
+    },
+    "home_as_gptbot": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 2874,
+      "vary": null
+    },
+    "home_as_markdown": {
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 2874,
+      "vary": null
+    },
+    "content_signal_in_robots": false,
+    "bots": {
+      "GPTBot": {
+        "named": true,
+        "allowed": false
+      },
+      "OAI-SearchBot": {
+        "named": false,
+        "allowed": true
+      },
+      "ChatGPT-User": {
+        "named": false,
+        "allowed": true
+      },
+      "ClaudeBot": {
+        "named": false,
+        "allowed": true
+      },
+      "Claude-SearchBot": {
+        "named": false,
+        "allowed": true
+      },
+      "Claude-User": {
+        "named": false,
+        "allowed": true
+      },
+      "PerplexityBot": {
+        "named": false,
+        "allowed": true
+      },
+      "Perplexity-User": {
+        "named": false,
+        "allowed": true
+      },
+      "Google-Extended": {
+        "named": false,
+        "allowed": true
+      },
+      "Applebot-Extended": {
+        "named": false,
+        "allowed": true
+      },
+      "CCBot": {
+        "named": false,
+        "allowed": true
+      },
+      "Bytespider": {
+        "named": false,
+        "allowed": true
+      },
+      "meta-externalagent": {
+        "named": false,
+        "allowed": true
+      },
+      "Amazonbot": {
+        "named": false,
+        "allowed": true
+      }
+    }
+  },
+  "markdown_versions": {
+    "pages": 0,
+    "of": 9
+  },
+  "indexable_pages": 9,
+  "issues": [
+    {
+      "code": "http_url",
+      "category": "Security",
+      "priority": "high",
+      "kind": "issue",
+      "label": "HTTP URLs",
+      "urls": 20,
+      "examples": [
+        {
+          "url": "http://localhost:4321/",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/about",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/blog/post-1",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/canonicalised",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/dup-a",
+          "detail": null
+        }
+      ]
+    },
+    {
+      "code": "links_localhost",
+      "category": "Links",
+      "priority": "high",
+      "kind": "issue",
+      "label": "Outlinks to localhost",
+      "urls": 16,
+      "examples": [
+        {
+          "url": "http://localhost:4321/",
+          "detail": "http://127.0.0.1:4321/gone"
+        },
+        {
+          "url": "http://localhost:4321/about",
+          "detail": "http://localhost:4321/"
+        },
+        {
+          "url": "http://localhost:4321/blog/post-1",
+          "detail": "http://localhost:4321/"
+        },
+        {
+          "url": "http://localhost:4321/canonicalised",
+          "detail": "http://localhost:4321/"
+        },
+        {
+          "url": "http://localhost:4321/dup-a",
+          "detail": "http://localhost:4321/"
+        }
+      ]
+    },
+    {
+      "code": "content_exact_duplicate",
+      "category": "Content",
+      "priority": "high",
+      "kind": "issue",
+      "label": "Exact duplicates",
+      "urls": 2,
+      "examples": [
+        {
+          "url": "http://localhost:4321/dup-a",
+          "detail": "4e9c52932b14cb78b7a26c485358d21b13024e30"
+        },
+        {
+          "url": "http://localhost:4321/dup-b",
+          "detail": "4e9c52932b14cb78b7a26c485358d21b13024e30"
+        }
+      ]
+    },
+    {
+      "code": "redirect_loop",
+      "category": "Response codes",
+      "priority": "high",
+      "kind": "issue",
+      "label": "Internal redirect loop",
+      "urls": 2,
+      "examples": [
+        {
+          "url": "http://localhost:4321/loop-a",
+          "detail": "http://localhost:4321/loop-a -> http://localhost:4321/loop-b"
+        },
+        {
+          "url": "http://localhost:4321/loop-b",
+          "detail": "http://localhost:4321/loop-b -> http://localhost:4321/loop-a"
+        }
+      ]
+    },
+    {
+      "code": "hreflang_no_return",
+      "category": "Hreflang",
+      "priority": "high",
+      "kind": "issue",
+      "label": "Missing return links",
+      "urls": 1,
+      "examples": [
+        {
+          "url": "http://localhost:4321/en/",
+          "detail": "fr: http://localhost:4321/fr/"
+        }
+      ]
+    },
+    {
+      "code": "internal_4xx",
+      "category": "Response codes",
+      "priority": "high",
+      "kind": "issue",
+      "label": "Internal client error (4xx)",
+      "urls": 1,
+      "examples": [
+        {
+          "url": "http://localhost:4321/missing",
+          "detail": "1 source page(s), e.g. http://localhost:4321/"
+        }
+      ]
+    },
+    {
+      "code": "canonical_canonicalised",
+      "category": "Canonicals",
+      "priority": "high",
+      "kind": "warning",
+      "label": "Canonicalised",
+      "urls": 1,
+      "examples": [
+        {
+          "url": "http://localhost:4321/canonicalised",
+          "detail": "http://localhost:4321/about"
+        }
+      ]
+    },
+    {
+      "code": "content_lorem",
+      "category": "Content",
+      "priority": "high",
+      "kind": "warning",
+      "label": "Lorem ipsum placeholder",
+      "urls": 1,
+      "examples": [
+        {
+          "url": "http://localhost:4321/about",
+          "detail": null
+        }
+      ]
+    },
+    {
+      "code": "directive_noindex",
+      "category": "Directives",
+      "priority": "high",
+      "kind": "warning",
+      "label": "Noindex",
+      "urls": 1,
+      "examples": [
+        {
+          "url": "http://localhost:4321/noindex-page",
+          "detail": "noindex "
+        }
+      ]
+    },
+    {
+      "code": "internal_blocked_robots",
+      "category": "Response codes",
+      "priority": "high",
+      "kind": "warning",
+      "label": "Internal blocked by robots.txt",
+      "urls": 1,
+      "examples": [
+        {
+          "url": "http://localhost:4321/private/secret",
+          "detail": "1 source page(s), e.g. http://localhost:4321/"
+        }
+      ]
+    },
+    {
+      "code": "sitemap_not_in",
+      "category": "Sitemaps",
+      "priority": "medium",
+      "kind": "issue",
+      "label": "Indexable URLs not in sitemap",
+      "urls": 6,
+      "examples": [
+        {
+          "url": "http://localhost:4321/blog/post-1",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/dup-a",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/dup-b",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/en/",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/fr/",
+          "detail": null
+        }
+      ]
+    },
+    {
+      "code": "h1_missing",
+      "category": "H1",
+      "priority": "medium",
+      "kind": "issue",
+      "label": "Missing",
+      "urls": 1,
+      "examples": [
+        {
+          "url": "http://localhost:4321/about",
+          "detail": null
+        }
+      ]
+    },
+    {
+      "code": "sitemap_non_indexable",
+      "category": "Sitemaps",
+      "priority": "medium",
+      "kind": "issue",
+      "label": "Non-indexable URLs in sitemap",
+      "urls": 1,
+      "examples": [
+        {
+          "url": "http://localhost:4321/noindex-page",
+          "detail": "Noindex"
+        }
+      ]
+    },
+    {
+      "code": "sitemap_orphan",
+      "category": "Sitemaps",
+      "priority": "medium",
+      "kind": "issue",
+      "label": "Orphan URLs (in a sitemap, reached by no internal link)",
+      "urls": 1,
+      "examples": [
+        {
+          "url": "http://localhost:4321/orphan",
+          "detail": null
+        }
+      ]
+    },
+    {
+      "code": "canonical_missing",
+      "category": "Canonicals",
+      "priority": "medium",
+      "kind": "warning",
+      "label": "Missing",
+      "urls": 8,
+      "examples": [
+        {
+          "url": "http://localhost:4321/about",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/blog/post-1",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/dup-a",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/dup-b",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/en/",
+          "detail": null
+        }
+      ]
+    },
+    {
+      "code": "redirect_temporary",
+      "category": "Response codes",
+      "priority": "medium",
+      "kind": "warning",
+      "label": "Internal temporary redirect (302, 303, 307): a weak signal, Google keeps the old URL",
+      "urls": 2,
+      "examples": [
+        {
+          "url": "http://localhost:4321/older-page",
+          "detail": "302 -> http://localhost:4321/about"
+        },
+        {
+          "url": "http://localhost:4321/temp",
+          "detail": "307 -> http://localhost:4321/team"
+        }
+      ]
+    },
+    {
+      "code": "ai_bots_blocked",
+      "category": "AI readiness",
+      "priority": "medium",
+      "kind": "warning",
+      "label": "AI crawlers disallowed in robots.txt",
+      "urls": 1,
+      "examples": [
+        {
+          "url": "http://localhost:4321/",
+          "detail": "GPTBot"
+        }
+      ]
+    },
+    {
+      "code": "redirect_chain",
+      "category": "Response codes",
+      "priority": "medium",
+      "kind": "warning",
+      "label": "Internal redirect chain",
+      "urls": 1,
+      "examples": [
+        {
+          "url": "http://localhost:4321/old-page",
+          "detail": "http://localhost:4321/old-page -> http://localhost:4321/older-page -> http://localhost:4321/about"
+        }
+      ]
+    },
+    {
+      "code": "title_duplicate",
+      "category": "Page titles",
+      "priority": "medium",
+      "kind": "opportunity",
+      "label": "Duplicate",
+      "urls": 2,
+      "examples": [
+        {
+          "url": "http://localhost:4321/about",
+          "detail": "About us"
+        },
+        {
+          "url": "http://localhost:4321/team",
+          "detail": "About us"
+        }
+      ]
+    },
+    {
+      "code": "content_stale_year",
+      "category": "Content",
+      "priority": "medium",
+      "kind": "opportunity",
+      "label": "Title names a past year",
+      "urls": 1,
+      "examples": [
+        {
+          "url": "http://localhost:4321/blog/post-1",
+          "detail": "The 2019 guide to widgets"
+        }
+      ]
+    },
+    {
+      "code": "image_over_100kb",
+      "category": "Images",
+      "priority": "medium",
+      "kind": "opportunity",
+      "label": "Over 100 kB",
+      "urls": 1,
+      "examples": [
+        {
+          "url": "http://localhost:4321/img/big.png",
+          "detail": "120 kB"
+        }
+      ]
+    },
+    {
+      "code": "image_missing_alt_attribute",
+      "category": "Images",
+      "priority": "low",
+      "kind": "issue",
+      "label": "Missing alt attribute",
+      "urls": 1,
+      "examples": [
+        {
+          "url": "http://localhost:4321/",
+          "detail": "1 image(s), e.g. http://localhost:4321/img/big.png"
+        }
+      ]
+    },
+    {
+      "code": "missing_csp",
+      "category": "Security",
+      "priority": "low",
+      "kind": "warning",
+      "label": "Missing Content-Security-Policy header",
+      "urls": 11,
+      "examples": [
+        {
+          "url": "http://localhost:4321/",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/about",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/blog/post-1",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/canonicalised",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/dup-a",
+          "detail": null
+        }
+      ]
+    },
+    {
+      "code": "missing_referrer_policy",
+      "category": "Security",
+      "priority": "low",
+      "kind": "warning",
+      "label": "Missing secure Referrer-Policy header",
+      "urls": 11,
+      "examples": [
+        {
+          "url": "http://localhost:4321/",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/about",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/blog/post-1",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/canonicalised",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/dup-a",
+          "detail": null
+        }
+      ]
+    },
+    {
+      "code": "missing_xcto",
+      "category": "Security",
+      "priority": "low",
+      "kind": "warning",
+      "label": "Missing X-Content-Type-Options header",
+      "urls": 11,
+      "examples": [
+        {
+          "url": "http://localhost:4321/",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/about",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/blog/post-1",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/canonicalised",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/dup-a",
+          "detail": null
+        }
+      ]
+    },
+    {
+      "code": "missing_xfo",
+      "category": "Security",
+      "priority": "low",
+      "kind": "warning",
+      "label": "Missing X-Frame-Options header",
+      "urls": 11,
+      "examples": [
+        {
+          "url": "http://localhost:4321/",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/about",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/blog/post-1",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/canonicalised",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/dup-a",
+          "detail": null
+        }
+      ]
+    },
+    {
+      "code": "h2_missing",
+      "category": "H2",
+      "priority": "low",
+      "kind": "warning",
+      "label": "Missing",
+      "urls": 8,
+      "examples": [
+        {
+          "url": "http://localhost:4321/about",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/blog/post-1",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/dup-a",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/dup-b",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/en/",
+          "detail": null
+        }
+      ]
+    },
+    {
+      "code": "internal_3xx",
+      "category": "Response codes",
+      "priority": "low",
+      "kind": "warning",
+      "label": "Internal links to a redirect (3xx)",
+      "urls": 3,
+      "examples": [
+        {
+          "url": "http://localhost:4321/loop-a",
+          "detail": "1 source page(s), e.g. http://localhost:4321/"
+        },
+        {
+          "url": "http://localhost:4321/old-page",
+          "detail": "1 source page(s), e.g. http://localhost:4321/"
+        },
+        {
+          "url": "http://localhost:4321/temp",
+          "detail": "1 source page(s), e.g. http://localhost:4321/"
+        }
+      ]
+    },
+    {
+      "code": "external_4xx",
+      "category": "Response codes",
+      "priority": "low",
+      "kind": "warning",
+      "label": "External client error (4xx)",
+      "urls": 1,
+      "examples": [
+        {
+          "url": "http://127.0.0.1:4321/gone",
+          "detail": "1 source page(s), e.g. http://localhost:4321/"
+        }
+      ]
+    },
+    {
+      "code": "hreflang_missing_x_default",
+      "category": "Hreflang",
+      "priority": "low",
+      "kind": "warning",
+      "label": "Missing x-default",
+      "urls": 1,
+      "examples": [
+        {
+          "url": "http://localhost:4321/fr/",
+          "detail": null
+        }
+      ]
+    },
+    {
+      "code": "twitter_missing",
+      "category": "Social",
+      "priority": "low",
+      "kind": "opportunity",
+      "label": "Missing X cards",
+      "urls": 9,
+      "examples": [
+        {
+          "url": "http://localhost:4321/",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/about",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/blog/post-1",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/dup-a",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/dup-b",
+          "detail": null
+        }
+      ]
+    },
+    {
+      "code": "og_missing",
+      "category": "Social",
+      "priority": "low",
+      "kind": "opportunity",
+      "label": "Missing Open Graph tags",
+      "urls": 8,
+      "examples": [
+        {
+          "url": "http://localhost:4321/about",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/blog/post-1",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/dup-a",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/dup-b",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/en/",
+          "detail": null
+        }
+      ]
+    },
+    {
+      "code": "schema_missing",
+      "category": "Structured data",
+      "priority": "low",
+      "kind": "opportunity",
+      "label": "Missing",
+      "urls": 8,
+      "examples": [
+        {
+          "url": "http://localhost:4321/",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/about",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/dup-a",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/dup-b",
+          "detail": null
+        },
+        {
+          "url": "http://localhost:4321/en/",
+          "detail": null
+        }
+      ]
+    },
+    {
+      "code": "title_below_30",
+      "category": "Page titles",
+      "priority": "low",
+      "kind": "opportunity",
+      "label": "Below 30 characters",
+      "urls": 8,
+      "examples": [
+        {
+          "url": "http://localhost:4321/about",
+          "detail": "8: About us"
+        },
+        {
+          "url": "http://localhost:4321/blog/post-1",
+          "detail": "25: The 2019 guide to widgets"
+        },
+        {
+          "url": "http://localhost:4321/dup-a",
+          "detail": "11: Duplicate A"
+        },
+        {
+          "url": "http://localhost:4321/dup-b",
+          "detail": "11: Duplicate B"
+        },
+        {
+          "url": "http://localhost:4321/en/",
+          "detail": "18: Widgets in English"
+        }
+      ]
+    },
+    {
+      "code": "links_few_inlinks",
+      "category": "Links",
+      "priority": "low",
+      "kind": "opportunity",
+      "label": "Fewer than 5 pages link to it (Zyppy study: the group with the fewest Google clicks)",
+      "urls": 6,
+      "examples": [
+        {
+          "url": "http://localhost:4321/blog/post-1",
+          "detail": "1 linking page(s), link score 35.6"
+        },
+        {
+          "url": "http://localhost:4321/dup-a",
+          "detail": "1 linking page(s), link score 35.6"
+        },
+        {
+          "url": "http://localhost:4321/dup-b",
+          "detail": "1 linking page(s), link score 35.6"
+        },
+        {
+          "url": "http://localhost:4321/en/",
+          "detail": "1 linking page(s), link score 35.6"
+        },
+        {
+          "url": "http://localhost:4321/fr/",
+          "detail": "1 linking page(s), link score 35.6"
+        }
+      ]
+    },
+    {
+      "code": "title_below_px",
+      "category": "Page titles",
+      "priority": "low",
+      "kind": "opportunity",
+      "label": "Below 200 pixels (estimated)",
+      "urls": 6,
+      "examples": [
+        {
+          "url": "http://localhost:4321/about",
+          "detail": "82 px: About us"
+        },
+        {
+          "url": "http://localhost:4321/dup-a",
+          "detail": "106 px: Duplicate A"
+        },
+        {
+          "url": "http://localhost:4321/dup-b",
+          "detail": "106 px: Duplicate B"
+        },
+        {
+          "url": "http://localhost:4321/en/",
+          "detail": "171 px: Widgets in English"
+        },
+        {
+          "url": "http://localhost:4321/fr/",
+          "detail": "182 px: Widgets en français"
+        }
+      ]
+    },
+    {
+      "code": "description_below_70",
+      "category": "Meta description",
+      "priority": "low",
+      "kind": "opportunity",
+      "label": "Below 70 characters",
+      "urls": 3,
+      "examples": [
+        {
+          "url": "http://localhost:4321/dup-a",
+          "detail": "69: First of two pages with the same body text, to test exact duplicates."
+        },
+        {
+          "url": "http://localhost:4321/fr/",
+          "detail": "67: La version française de la page des widgets de test, avec son lien."
+        },
+        {
+          "url": "http://localhost:4321/orphan",
+          "detail": "69: An orphan: it is in the sitemap, and no page of the site links to it."
+        }
+      ]
+    },
+    {
+      "code": "h1_duplicate",
+      "category": "H1",
+      "priority": "low",
+      "kind": "opportunity",
+      "label": "Duplicate",
+      "urls": 2,
+      "examples": [
+        {
+          "url": "http://localhost:4321/dup-a",
+          "detail": "Same"
+        },
+        {
+          "url": "http://localhost:4321/dup-b",
+          "detail": "Same"
+        }
+      ]
+    },
+    {
+      "code": "ai_no_llms_txt",
+      "category": "AI readiness",
+      "priority": "low",
+      "kind": "opportunity",
+      "label": "No /llms.txt (optional: Google says it does not use it)",
+      "urls": 1,
+      "examples": [
+        {
+          "url": "http://localhost:4321/",
+          "detail": "status 404, text/html"
+        }
+      ]
+    },
+    {
+      "code": "ai_no_markdown_negotiation",
+      "category": "AI readiness",
+      "priority": "low",
+      "kind": "opportunity",
+      "label": "Home page does not answer Accept: text/markdown with Markdown",
+      "urls": 1,
+      "examples": [
+        {
+          "url": "http://localhost:4321/",
+          "detail": "text/html; charset=utf-8"
+        }
+      ]
+    },
+    {
+      "code": "description_missing",
+      "category": "Meta description",
+      "priority": "low",
+      "kind": "opportunity",
+      "label": "Missing",
+      "urls": 1,
+      "examples": [
+        {
+          "url": "http://localhost:4321/about",
+          "detail": null
+        }
+      ]
+    },
+    {
+      "code": "discover_no_large_preview",
+      "category": "Directives",
+      "priority": "low",
+      "kind": "opportunity",
+      "label": "Article without max-image-preview:large (Google Discover asks for it to show a large image)",
+      "urls": 1,
+      "examples": [
+        {
+          "url": "http://localhost:4321/blog/post-1",
+          "detail": null
+        }
+      ]
+    },
+    {
+      "code": "geo_few_statistics",
+      "category": "AI readiness",
+      "priority": "low",
+      "kind": "opportunity",
+      "label": "Article with fewer than 3 figures (GEO study: adding statistics raised visibility in AI answers)",
+      "urls": 1,
+      "examples": [
+        {
+          "url": "http://localhost:4321/blog/post-1",
+          "detail": "565 words, 0 figure(s), 0 outside source(s)"
+        }
+      ]
+    },
+    {
+      "code": "geo_no_cited_source",
+      "category": "AI readiness",
+      "priority": "low",
+      "kind": "opportunity",
+      "label": "Article without a single link to an outside source (GEO study: citing sources raised visibility in AI answers)",
+      "urls": 1,
+      "examples": [
+        {
+          "url": "http://localhost:4321/blog/post-1",
+          "detail": "565 words, 0 figure(s)"
+        }
+      ]
+    },
+    {
+      "code": "image_legacy_format",
+      "category": "Images",
+      "priority": "low",
+      "kind": "opportunity",
+      "label": "PNG, JPEG or GIF over 100 kB (web.dev: prefer AVIF or WebP)",
+      "urls": 1,
+      "examples": [
+        {
+          "url": "http://localhost:4321/img/big.png",
+          "detail": "image/png, 120 kB"
+        }
+      ]
+    },
+    {
+      "code": "image_missing_size",
+      "category": "Images",
+      "priority": "low",
+      "kind": "opportunity",
+      "label": "Missing size attributes",
+      "urls": 1,
+      "examples": [
+        {
+          "url": "http://localhost:4321/",
+          "detail": "1 image(s), e.g. http://localhost:4321/img/big.png"
+        }
+      ]
+    },
+    {
+      "code": "schema_rich_result_warnings",
+      "category": "Structured data",
+      "priority": "low",
+      "kind": "opportunity",
+      "label": "Rich result validation warnings (subset)",
+      "urls": 1,
+      "examples": [
+        {
+          "url": "http://localhost:4321/blog/post-1",
+          "detail": "Article without datePublished"
+        }
+      ]
+    },
+    {
+      "code": "site_name_schema",
+      "category": "Structured data",
+      "priority": "low",
+      "kind": "opportunity",
+      "label": "Home page without WebSite structured data (name and url): the source Google prefers for the site name",
+      "urls": 1,
+      "examples": [
+        {
+          "url": "http://localhost:4321/",
+          "detail": null
+        }
+      ]
+    },
+    {
+      "code": "sitemap_no_lastmod",
+      "category": "Sitemaps",
+      "priority": "low",
+      "kind": "opportunity",
+      "label": "Sitemap URLs without lastmod",
+      "urls": 1,
+      "examples": [
+        {
+          "url": "http://localhost:4321/",
+          "detail": "1 of 4 URLs"
+        }
+      ]
+    },
+    {
+      "code": "title_same_as_h1",
+      "category": "Page titles",
+      "priority": "low",
+      "kind": "opportunity",
+      "label": "Same as h1",
+      "urls": 1,
+      "examples": [
+        {
+          "url": "http://localhost:4321/blog/post-1",
+          "detail": "The 2019 guide to widgets"
+        }
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "section": "(home)",
+      "pages": 3,
+      "words_avg": 244,
+      "link_score_avg": 57.1,
+      "inlinks_avg": 4.3,
+      "issues_medium_high": 12
+    },
+    {
+      "section": "about",
+      "pages": 1,
+      "words_avg": 226,
+      "link_score_avg": 91.3,
+      "inlinks_avg": 11,
+      "issues_medium_high": 6
+    },
+    {
+      "section": "blog",
+      "pages": 1,
+      "words_avg": 565,
+      "link_score_avg": 35.6,
+      "inlinks_avg": 1,
+      "issues_medium_high": 5
+    },
+    {
+      "section": "dup-a",
+      "pages": 1,
+      "words_avg": 240,
+      "link_score_avg": 35.6,
+      "inlinks_avg": 1,
+      "issues_medium_high": 5
+    },
+    {
+      "section": "dup-b",
+      "pages": 1,
+      "words_avg": 240,
+      "link_score_avg": 35.6,
+      "inlinks_avg": 1,
+      "issues_medium_high": 5
+    },
+    {
+      "section": "team",
+      "pages": 1,
+      "words_avg": 231,
+      "link_score_avg": 91.3,
+      "inlinks_avg": 11,
+      "issues_medium_high": 5
+    },
+    {
+      "section": "orphan",
+      "pages": 1,
+      "words_avg": 220,
+      "link_score_avg": 0,
+      "inlinks_avg": 0,
+      "issues_medium_high": 4
+    }
+  ]
+}

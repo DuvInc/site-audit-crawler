@@ -1,0 +1,11 @@
+node_modules
+.env
+.env.*
+!.env.example
+# Crawls hold what a site answered, and Search Console data: read them, keep what you learn, not the files.
+audits/
+*.db
+*.db-wal
+*.db-shm
+.claude/
+.DS_Store
