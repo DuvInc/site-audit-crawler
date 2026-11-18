@@ -82,6 +82,18 @@ test('a second run is answered from the cache and costs nothing', async () => {
   assert.ok(r.spentAllRuns > 0);
 });
 
+test('include and exclude decide which pages the models see', async () => {
+  const client = fakeClient();
+  const seen = [];
+  const decide = client.decide;
+  client.decide = (body) => (seen.push(JSON.parse(body).state.path), decide(body));
+  const dir = ctx.dir;
+  await runAi(dir, { client, budget: 1, steps: ['pages'], exclude: /\/(dup-a|dup-b|team)$/, cacheFile: join(ctx.root, 'scope.db') });
+  assert.ok(seen.length > 0);
+  assert.ok(!seen.some((p) => ['/dup-a', '/dup-b', '/team'].includes(p)), seen.join(', '));
+  await assert.rejects(runAi(dir, { client, budget: 1, include: /nothing-matches/, cacheFile: join(ctx.root, 'scope2.db') }), /No indexable page left/);
+});
+
 test('a dry run prints the worst case without a key', async () => {
   const logs = [];
   const r = await runAi(ctx.dir, { dry: true, pricing: { price: async (m) => PRICES[m] }, cacheFile: join(ctx.root, 'dry2.db'), onLog: (l) => logs.push(l) });

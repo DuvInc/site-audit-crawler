@@ -30,6 +30,7 @@ GSC       --gsc google|treg  --days 90  --inspect 40  --property sc-domain:examp
           google: GSC_ACCESS_TOKEN, or GOOGLE_APPLICATION_CREDENTIALS (service account key file)
           treg:   treg connections connect --provider google-search-console
 AI        --budget 0.5 (a hard cap: never exceeded)  --pilot 5  --dry (prints the worst case)
+          --ai-include <regex>  --ai-exclude <regex> (which pages the models see)
           --chat-tier flex|normal (flex: half price, slower)  --steps taxonomy,pages,queries,cannibal,links
           --decision-model typesafe/jev-1.13  --chat-model openai/gpt-6-luna
           OPENROUTER_API_KEY (and optionally OPENROUTER_BASE_URL)
@@ -38,7 +39,7 @@ AI        --budget 0.5 (a hard cap: never exceeded)  --pilot 5  --dry (prints th
 const argv = process.argv.slice(2);
 const has = (name) => argv.includes(`--${name}`);
 const opt = (name, def) => (has(name) ? argv[argv.indexOf(`--${name}`) + 1] : def);
-const valued = new Set(['chat-tier', 'max', 'concurrency', 'include', 'exclude', 'user-agent', 'out', 'dir', 'gsc', 'sample', 'days', 'inspect', 'property', 'budget', 'pilot', 'steps', 'decision-model', 'chat-model']);
+const valued = new Set(['ai-include', 'ai-exclude', 'chat-tier', 'max', 'concurrency', 'include', 'exclude', 'user-agent', 'out', 'dir', 'gsc', 'sample', 'days', 'inspect', 'property', 'budget', 'pilot', 'steps', 'decision-model', 'chat-model']);
 const positional = argv.filter((a, i) => !a.startsWith('--') && !(i > 0 && argv[i - 1].startsWith('--') && valued.has(argv[i - 1].slice(2))));
 const [command, ...args] = positional;
 
@@ -136,6 +137,8 @@ async function doAi(dir) {
     chatTier: opt('chat-tier', AI_DEFAULTS.chatTier),
     budget: Number(opt('budget', AI_DEFAULTS.budget)),
     pilot: Number(opt('pilot', 0)),
+    include: opt('ai-include') ? new RegExp(opt('ai-include')) : undefined,
+    exclude: opt('ai-exclude') ? new RegExp(opt('ai-exclude')) : undefined,
     steps: opt('steps') ? opt('steps').split(',') : AI_DEFAULTS.steps,
     decisionModel: opt('decision-model', AI_DEFAULTS.decisionModel),
     chatModel: opt('chat-model', AI_DEFAULTS.chatModel),
