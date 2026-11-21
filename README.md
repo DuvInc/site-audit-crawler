@@ -13,7 +13,7 @@ node bin/site-audit.mjs run https://example.com --gsc treg --ai --budget 0.10
 # ...joins Search Console, asks two small models, and reports 56 controls with findings out of 152
 ```
 
-Measured on two real sites in November 2026: **lookio.app** (a SaaS site with its docs, 806 URLs) crawled in 17 s, **gduv.club** (a personal site in four languages, 822 URLs) in 19 s, on a laptop, for $0. The optional AI layer cost **$0.059 for 250 pages** and $0.028 for 179, and a re-run on unchanged pages costs nothing. An example report on a small site with planted defects: [examples/report.md](examples/report.md).
+Measured on three real sites in November 2026: **lookio.app** (a SaaS site with its docs, 806 URLs) crawled in 17 s, **gduv.club** (a personal site in four languages, 822 URLs) in 19 s, and **[atelier201.com](https://atelier201.com)** (a website builder's site and docs in six languages, 3,226 URLs) in 158 s, on a laptop, for $0. The optional AI layer cost **$0.059 for 250 pages** and $0.028 for 179, and a re-run on unchanged pages costs nothing. An example report on a small site with planted defects: [examples/report.md](examples/report.md).
 
 ## What it finds
 
@@ -154,7 +154,7 @@ The library never reads the environment. The three things that talk to an outsid
 ## What this is not
 
 - **Not a rank tracker or a backlink tool.** It reads your site and your Search Console, nothing about other sites.
-- **Not a large-site crawler yet.** It keeps its queue in memory and has been run on sites of about 800 URLs. Use `--max` and `--include` on large sites.
+- **Not a large-site crawler yet.** It keeps its queue in memory and has been run on sites of up to about 3,200 URLs. Use `--max` and `--include` on large sites.
 - **Not a way through bot protection.** It sends a clear user-agent, respects robots.txt, and does not try to pass a WAF or a captcha. Crawl sites you are allowed to crawl.
 - **Not real-user performance.** LCP and CLS come from one load in a local Chrome. For field data, look at the Chrome UX Report.
 - **Not a verdict.** The AI scores are probabilities with thresholds set by reading samples. The findings are leads to check, with the query that produced each one.
