@@ -7,14 +7,20 @@ How to work in this repository. The README says what the tool does; this file sa
 ```
 bin/site-audit.mjs    the CLI: reads the environment and .env, builds the transports, calls lib/
 lib/
-  crawl.mjs           the crawler: robots.txt, sitemaps, AI-readiness probes, breadth-first fetch
+  core.mjs            everything that runs without Node (a Cloudflare Worker, Workflow or Durable Object)
+  schema.mjs          the crawl database schema, the database-handle contract, tx()
+  crawl-core.mjs      the crawler in resumable batches: robots.txt, sitemaps, AI-readiness probes, queue in SQLite
+  crawl.mjs           the Node loop around crawl-core, writing <dir>/crawl.db
   extract.mjs         everything read from one HTML document (cheerio), raw or rendered
   robots.mjs          robots.txt parsing and matching (RFC 9309)
-  db.mjs              the crawl.db schema and helpers
-  analyze.mjs         depth, inlinks, link score, indexability, duplicates, then every rule
+  db.mjs              node:sqlite: create and open <dir>/crawl.db
+  durable-object-db.mjs  the database handle over a Durable Object's ctx.storage
+  analyze-core.mjs    depth, inlinks, link score, indexability, duplicates, then every rule, on a handle
+  analyze.mjs         analyze(dir): analyze-core, then summary.json and report.md
   report.mjs          report.md from the summary
   render.mjs          Chrome sample: raw vs rendered, axe-core, LCP, CLS (playwright-core, optional)
-  gsc.mjs             Search Console import, transport injected
+  gsc-core.mjs        Search Console import on a handle, transport injected, rows paged 25,000 at a time
+  gsc.mjs             importSearchConsole(dir): gsc-core on <dir>/crawl.db
   google.mjs          transport: Google's API (service account JWT or access token)
   treg.mjs            transport: the treg CLI
   ai.mjs              the AI layer, client injected, cache, hard budget cap
@@ -31,7 +37,7 @@ skills/site-audit/    the procedure for an agent that uses the tool
 
 ```bash
 npm install
-npm test                                   # 56 tests, no key, no network beyond localhost
+npm test                                   # 68 tests, no key, no network beyond localhost
 npm run example                            # regenerate examples/ from the fixture site
 node bin/site-audit.mjs run <url>          # crawl, analyse, render; add --gsc google|treg and --ai
 node bin/site-audit.mjs --help

@@ -1,7 +1,7 @@
 {
   "name": "site-audit-crawler",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "Crawl a website into one SQLite file and audit it: about 150 technical, SEO and AI-readiness controls with sourced thresholds, Search Console joined by URL, and an optional AI layer for a few cents per site.",
   "license": "MIT",
@@ -13,6 +13,7 @@
   },
   "exports": {
     ".": "./lib/index.mjs",
+    "./core": "./lib/core.mjs",
     "./crawl": "./lib/crawl.mjs",
     "./analyze": "./lib/analyze.mjs",
     "./render": "./lib/render.mjs",
