@@ -151,6 +151,25 @@ summary.issues[0]; // { code, category, priority, kind, label, urls, examples: [
 
 The library never reads the environment. The three things that talk to an outside service are injected: `fetch` for the crawl, a Search Console transport (`lib/google.mjs` or `lib/treg.mjs`, or yours: `(path, body?) => Promise<json>`), and a model client (`lib/openrouter.mjs`, or yours with `decide(body)` and `chat({ model, system, user, schema })`). That is how the tests run with no network beyond localhost and no key.
 
+### Outside Node: a Cloudflare Worker or Durable Object
+
+`site-audit-crawler/core` has no Node import (no `node:sqlite`, `fs`, `path` or `child_process`; a test checks it). Every step takes a database handle instead of a directory, and the crawl runs in batches whose queue lives in the database, so a batch that crashed is claimed again by the next one:
+
+```js
+import { SCHEMA, durableObjectDb, initCrawl, crawlBatch, analyzeDb } from 'site-audit-crawler/core';
+
+// inside a Durable Object
+const db = durableObjectDb(this.ctx.storage);
+db.exec(SCHEMA);
+await initCrawl(db, { start: 'https://example.com/', max: 5000 });
+// one call per Workflow step, for example
+let r;
+do r = await crawlBatch(db, { size: 200, concurrency: 6 }); while (!r.done);
+const { summary, report } = analyzeDb(db);
+```
+
+Memory stays bounded by the number of pages, not of links: link counts are SQL aggregates, the link graph is streamed into integer arrays, and near duplicates are found by banding the simhash (exact for the 5-bit threshold, without comparing every pair). Bodies are read with a byte cap after decompression (`maxBodyBytes`, 5 MB). The render step and the AI layer still need Node.
+
 ## What this is not
 
 - **Not a rank tracker or a backlink tool.** It reads your site and your Search Console, nothing about other sites.
