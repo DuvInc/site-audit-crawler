@@ -65,8 +65,8 @@ export function fixtureRoutes(origin, externalOrigin) {
       head: `<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The 2019 guide to widgets","image":"${origin}/img/og.png","author":{"@type":"Person","name":"A. Writer"}}</script>`,
       body: `<p>${words(560, 'guide')}</p><a href="/">Back home</a>`,
     })),
-    // hreflang_no_return: /en/ lists /fr/, and /fr/ does not list /en/ back
-    '/en/': html(page({ title: 'Widgets in English', description: 'The English version of the fixture widgets page, with its French twin.', h1: 'English', head: `<link rel="alternate" hreflang="en" href="${origin}/en/"><link rel="alternate" hreflang="fr" href="${origin}/fr/"><link rel="alternate" hreflang="x-default" href="${origin}/en/">`, body: `<p>${words(220, 'english')}</p>` })),
+    // hreflang_no_return: /en/ lists /fr/, and /fr/ does not list /en/ back; title_repeated_segment (the site name twice)
+    '/en/': html(page({ title: 'Widgets in English | Fixture widgets | Fixture widgets', description: 'The English version of the fixture widgets page, with its French twin.', h1: 'English', head: `<link rel="alternate" hreflang="en" href="${origin}/en/"><link rel="alternate" hreflang="fr" href="${origin}/fr/"><link rel="alternate" hreflang="x-default" href="${origin}/en/">`, body: `<p>${words(220, 'english')}</p>` })),
     // hreflang_missing_x_default
     '/fr/': html(page({ title: 'Widgets en français', description: 'La version française de la page des widgets de test, avec son lien.', h1: 'Français', lang: 'fr', head: `<link rel="alternate" hreflang="fr" href="${origin}/fr/">`, body: `<p>${words(220, 'francais')}</p>` })),
     // content_exact_duplicate

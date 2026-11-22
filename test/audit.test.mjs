@@ -32,6 +32,7 @@ const PLANTED = {
   sitemap_non_indexable: ['/noindex-page'],
   sitemap_orphan: ['/orphan'],
   hreflang_no_return: ['/en/'],
+  title_repeated_segment: ['/en/'],
   hreflang_missing_x_default: ['/fr/'],
   content_stale_year: ['/blog/post-1'],
   schema_rich_result_warnings: ['/blog/post-1'],
