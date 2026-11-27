@@ -2,7 +2,7 @@
 // required apart from recommended, catches self-written reviews and properties of the wrong type.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { TYPES, buildJsonLd, entryFor, fieldsFor, validateJsonLd, validateNode } from '../lib/structured-data.mjs';
+import { TYPES, buildJsonLd, entryFor, fieldsFor, labelFor, validateJsonLd, validateNode } from '../lib/structured-data.mjs';
 
 const codes = (node) => validateNode(node).map((i) => `${i.code}:${i.path}`);
 
