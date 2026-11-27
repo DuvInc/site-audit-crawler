@@ -36,6 +36,7 @@ const PLANTED = {
   hreflang_missing_x_default: ['/fr/'],
   content_stale_year: ['/blog/post-1'],
   schema_rich_result_warnings: ['/blog/post-1'],
+  schema_rating_not_shown: ['/orphan'],
   geo_no_cited_source: ['/blog/post-1'],
   geo_few_statistics: ['/blog/post-1'],
   image_over_100kb: ['/img/big.png'],

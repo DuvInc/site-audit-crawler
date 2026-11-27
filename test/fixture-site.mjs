@@ -73,7 +73,8 @@ export function fixtureRoutes(origin, externalOrigin) {
     '/dup-a': html(page({ title: 'Duplicate A', description: 'First of two pages with the same body text, to test exact duplicates.', h1: 'Same', body: `<p>${words(240, 'same')}</p>` })),
     '/dup-b': html(page({ title: 'Duplicate B', description: 'Second of two pages with the same body text, to test exact duplicates.', h1: 'Same', body: `<p>${words(240, 'same')}</p>` })),
     // sitemap_orphan: only the sitemap knows it
-    '/orphan': html(page({ title: 'A page no link reaches', description: 'An orphan: it is in the sitemap, and no page of the site links to it.', h1: 'Orphan', body: `<p>${words(220, 'orphan')}</p>` })),
+    // schema_rating_not_shown: a rating in the markup that the page never shows
+    '/orphan': html(page({ title: 'A page no link reaches', description: 'An orphan: it is in the sitemap, and no page of the site links to it.', h1: 'Orphan', head: `<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Widget app","url":"${origin}/orphan","description":"Plans widgets.","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":0,"priceCurrency":"EUR"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","ratingCount":"31"}}</script>`, body: `<p>${words(220, 'orphan')}</p>` })),
     // redirect_chain (301 then 302), internal_3xx, and redirect_temporary on the 302
     '/old-page': redirect(301, '/older-page'),
     '/older-page': redirect(302, '/about'),
