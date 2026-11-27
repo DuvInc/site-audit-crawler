@@ -14,12 +14,16 @@ test('role: the address, then what the pages show at one place, then what they d
   assert.equal(roleOf(tpl({ shape: '/blog/*' })).role, 'article');
   assert.equal(roleOf(tpl({ shape: '/notes/*', fields: { times: 9, authors: 9 }, paths: { times: { path: 'article>time', pages: 9 } } })).why, 'a date at article>time on 9 of 10 pages');
   assert.equal(roleOf(tpl({ shape: '/shop/*', fields: { prices: 10 }, paths: { prices: { path: 'div.price', pages: 10 } } })).role, 'product');
-  // A pricing table on comparison pages is not a product.
-  assert.equal(roleOf(tpl({ shape: '/vs/*', fields: { prices: 10 }, paths: { prices: { path: 'td', pages: 10 } } })).role, 'other');
+  // A pricing table on comparison pages is not a product: they are comparisons.
+  assert.equal(roleOf(tpl({ shape: '/vs/*', fields: { prices: 10 }, paths: { prices: { path: 'td', pages: 10 } } })).role, 'comparison');
+  assert.equal(roleOf(tpl({ shape: '/pricing', pages: 1 })).role, 'pricing');
+  assert.equal(roleOf(tpl({ shape: '/docs/*/*' })).role, 'docs');
+  assert.equal(roleOf(tpl({ shape: '/authors/*' })).role, 'profile');
+  assert.equal(roleOf(tpl({ shape: '/careers/*' })).role, 'job');
   assert.equal(roleOf(tpl({ shape: '/stores/*', fields: { addresses: 8, phones: 8 }, paths: { addresses: { path: 'address', pages: 8 }, phones: { path: 'a', pages: 8 } } })).role, 'location');
   assert.equal(roleOf(tpl({ shape: '/guides', pages: 1 }), ['/guides', '/guides/*']).role, 'listing');
   assert.equal(roleOf(tpl({ shape: '/blog', pages: 1, schema_types: { BlogPosting: 1 } }), ['/blog', '/blog/*']).role, 'listing');
-  assert.deepEqual(roleOf(tpl({ shape: '/docs/*' })), { role: 'other', why: 'no rule fits', decided: 'open' });
+  assert.deepEqual(roleOf(tpl({ shape: '/features/*' })), { role: 'other', why: 'no rule fits', decided: 'open' });
 });
 
 function crawlOf(pages) {
@@ -77,4 +81,20 @@ test('plan: a wrong value is reported with its reason, and WebSite off the home 
   const date = t.types[0].fields.find((x) => x.key === 'datePublished');
   assert.deepEqual([date.state, date.why], ['wrong', 'datetime']);
   assert.deepEqual(t.remove, ['WebSite: Google reads it on the home page only']);
+});
+
+test('plan: a SaaS pricing page carries the product once, WebApplication unless there is an app to install', () => {
+  const pricing = `<html>${head('Pricing')}<body><main><h1>Pricing</h1><div class="plan"><b class="price">€19</b></div></main></body></html>`;
+  const web = schemaPlan(crawlOf([['https://x.com/pricing', pricing]]));
+  assert.equal(web.product_type, 'WebApplication');
+  const p = web.templates.find((t) => t.shape === '/pricing');
+  assert.deepEqual([p.role, p.types.map((t) => t.type)], ['pricing', ['WebApplication']]);
+  const f = Object.fromEntries(p.types[0].fields.map((x) => [x.key, x]));
+  assert.deepEqual([f.name.state, f.name.where], ['on_page', 'meta[property=og:site_name]']);
+  assert.deepEqual([f['offers.price'].state, f['offers.price'].where], ['on_page', 'main>div.plan>b.price']);
+  assert.ok(f.applicationCategory && !f.isAccessibleForFree);
+
+  const db = crawlOf([['https://x.com/pricing', pricing]]);
+  db.prepare("INSERT INTO links (src, dst, type) VALUES ('https://x.com/pricing', 'https://apps.apple.com/app/x/id1', 'hyperlink')").run();
+  assert.equal(schemaPlan(db).templates[0].types[0].type, 'SoftwareApplication');
 });

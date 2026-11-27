@@ -27,6 +27,7 @@ Levels of confidence, from the firmest:
 | Hyphens rather than underscores in URLs, and one case: `/APPLE` and `/apple` are two URLs. ([URL structure](https://developers.google.com/search/docs/crawling-indexing/url-structure)) | `url_underscores`, `url_uppercase` |
 | The site name comes first from `WebSite` structured data (`name`, `url`) **on the home page**. ([site names](https://developers.google.com/search/docs/appearance/site-names)) | `site_name_schema` |
 | A visible date, and `datePublished` or `dateModified` in the structured data of an article. ([dates](https://developers.google.com/search/docs/appearance/publication-dates)) | `schema_rich_result_warnings` |
+| Ratings and reviews in structured data must be visible on the page, collected from users on the site, never aggregated from other sites, and never about the business itself. ([review snippet](https://developers.google.com/search/docs/appearance/structured-data/review-snippet)) | `schema_rating_not_shown`, `schema_self_serving_review` |
 | Discover: an image **at least 1,200 px wide**, enabled by `max-image-preview:large`. ([Discover](https://developers.google.com/search/docs/appearance/google-discover)) | `discover_no_large_preview`, `og_image_small` |
 
 ## B. web.dev and Chrome
