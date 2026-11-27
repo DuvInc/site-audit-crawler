@@ -98,3 +98,20 @@ test('plan: a SaaS pricing page carries the product once, WebApplication unless 
   db.prepare("INSERT INTO links (src, dst, type) VALUES ('https://x.com/pricing', 'https://apps.apple.com/app/x/id1', 'hyperlink')").run();
   assert.equal(schemaPlan(db).templates[0].types[0].type, 'SoftwareApplication');
 });
+
+test('plan: a model settles an open template; a template the rules place keeps its role', () => {
+  const feature = (n) => `<html>${head(`Feature ${n}`)}<body><main><h1>Feature ${n}</h1><p>What it does.</p></main></body></html>`;
+  const db = crawlOf([
+    ['https://x.com/', `<html>${head('Acme')}<body><main><h1>Acme</h1></main></body></html>`, 9],
+    ...[1, 2].map((n) => [`https://x.com/features/f-${n}`, feature(n)]),
+    ...[1, 2].map((n) => [`https://x.com/blog/post-${n}`, post(n)]),
+  ]);
+  const open = schemaPlan(db).templates.find((t) => t.shape === '/features/*');
+  assert.equal(open.decided, 'open');
+  const plan = schemaPlan(db, { roles: { '/features/*': 'service', '/blog/*': 'legal', '/': 'nonsense' } });
+  const by = Object.fromEntries(plan.templates.map((t) => [t.shape, t]));
+  assert.deepEqual([by['/features/*'].role, by['/features/*'].decided], ['service', 'model']);
+  assert.deepEqual(by['/features/*'].types.map((t) => t.type), ['Service', 'BreadcrumbList']);
+  assert.equal(by['/blog/*'].role, 'article');
+  assert.equal(by['/'].role, 'home');
+});

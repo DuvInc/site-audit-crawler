@@ -175,7 +175,7 @@ Each page stores `struct_sig`, a 16-character signature of its layout (where its
 `templatesOf(db)` groups the pages by path shape and signature, translations together: 730 pages of ai-glot.com make 19 templates, 581 of atelier201.com 25. Each comes with its most linked pages as samples, how many of its pages show each field, and the JSON-LD types already on them, so structured data (or any fix) is decided once per template.
 
 `schemaPlan(db)` turns them into a structured data plan, rules only, no model. For each template it gives:
-- **its role** (home, about, contact, legal, pricing, article, docs, profile, job, comparison, product, location, event, tool, listing), with the reason: the address, a field shown at one place on most of its pages, or a type it already declares. A price alone does not make a product (pricing tables sit on comparison pages too). A template no rule places is `open`, for a decision model.
+- **its role** (home, about, contact, legal, pricing, article, docs, profile, job, comparison, product, location, event, tool, listing), with the reason: the address, a field shown at one place on most of its pages, or a type it already declares. A price alone does not make a product (pricing tables sit on comparison pages too). A template no rule places is `open`: `schemaPlan(db, { roles: { '/features/*': 'service' } })` takes the role a decision model chose for it (`decided: "model"`), and never overrides a role the rules gave.
 - **the types to carry**, from the catalogue's roles.
 - **each field's state on its sample pages**: `valid`, `wrong` (with the reason), `on_page` (with the element that shows it, for example `header.post-head>time`), or `missing`.
 
