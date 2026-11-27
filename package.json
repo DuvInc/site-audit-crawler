@@ -23,7 +23,8 @@
     "./ai": "./lib/ai.mjs",
     "./openrouter": "./lib/openrouter.mjs",
     "./compare": "./lib/compare.mjs",
-    "./structured-data": "./lib/structured-data.mjs"
+    "./structured-data": "./lib/structured-data.mjs",
+    "./templates": "./lib/templates.mjs"
   },
   "scripts": {
     "audit": "node bin/site-audit.mjs run",
