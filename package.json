@@ -25,7 +25,8 @@
     "./compare": "./lib/compare.mjs",
     "./structured-data": "./lib/structured-data.mjs",
     "./templates": "./lib/templates.mjs",
-    "./schema-plan": "./lib/schema-plan.mjs"
+    "./schema-plan": "./lib/schema-plan.mjs",
+    "./llms-txt": "./lib/llms-txt.mjs"
   },
   "scripts": {
     "audit": "node bin/site-audit.mjs run",
