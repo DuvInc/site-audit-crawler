@@ -168,6 +168,12 @@ do r = await crawlBatch(db, { size: 200, concurrency: 6 }); while (!r.done);
 const { summary, report } = analyzeDb(db);
 ```
 
+### Templates and field evidence
+
+Each page stores `struct_sig`, a 16-character signature of its layout (where its H1, main content, date, price, address, breadcrumb and form sit), and `field_evidence`, a bounded JSON (6,000 characters at most, about 300 on average) of what a structured data value could be read from: the `article:`, `product:` and author meta tags, `time[datetime]`, prices, addresses, phones, emails, bylines and the breadcrumb, each with the element that shows it (`article.post>div.price-box>span.amount`). `text_cut` marks a page whose stored text stopped at 40,000 characters: a field not found there is unknown, not missing.
+
+`templatesOf(db)` groups the pages by path shape and signature, translations together: 730 pages of ai-glot.com make 19 templates, 581 of atelier201.com 25. Each comes with its most linked pages as samples, how many of its pages show each field, and the JSON-LD types already on them, so structured data (or any fix) is decided once per template.
+
 Memory stays bounded by the number of pages, not of links: link counts are SQL aggregates, the link graph is streamed into integer arrays, and near duplicates are found by banding the simhash (exact for the 5-bit threshold, without comparing every pair). Bodies are read with a byte cap after decompression (`maxBodyBytes`, 5 MB). The render step and the AI layer still need Node.
 
 ## What this is not
