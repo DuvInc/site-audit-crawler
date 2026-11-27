@@ -174,6 +174,13 @@ Each page stores `struct_sig`, a 16-character signature of its layout (where its
 
 `templatesOf(db)` groups the pages by path shape and signature, translations together: 730 pages of ai-glot.com make 19 templates, 581 of atelier201.com 25. Each comes with its most linked pages as samples, how many of its pages show each field, and the JSON-LD types already on them, so structured data (or any fix) is decided once per template.
 
+`schemaPlan(db)` turns them into a structured data plan, rules only, no model. For each template it gives:
+- **its role** (home, about, contact, legal, article, product, location, event, tool, listing), with the reason: the address, a field shown at one place on most of its pages, or a type it already declares. A price alone does not make a product (pricing tables sit on comparison pages too). A template no rule places is `open`, for a decision model.
+- **the types to carry**, from the catalogue's roles.
+- **each field's state on its sample pages**: `valid`, `wrong` (with the reason), `on_page` (with the element that shows it, for example `header.post-head>time`), or `missing`.
+
+`todo` counts what the template can fix from its own pages. `to_supply` counts what only the owner can give (a VAT number, an address), never guessed. On atelier201.com it found the home page without `Organization` and the tool pages without a breadcrumb. On ai-glot.com there is nothing left to fix from the pages, only the owner's details.
+
 Memory stays bounded by the number of pages, not of links: link counts are SQL aggregates, the link graph is streamed into integer arrays, and near duplicates are found by banding the simhash (exact for the 5-bit threshold, without comparing every pair). Bodies are read with a byte cap after decompression (`maxBodyBytes`, 5 MB). The render step and the AI layer still need Node.
 
 ## What this is not
