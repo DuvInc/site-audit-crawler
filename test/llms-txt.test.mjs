@@ -81,3 +81,15 @@ test('check: every link against the crawl, and the pages that matter left out', 
   assert.equal(c.links.at(-1).page, 'https://acme.com/blog/steel');
   assert.deepEqual(c.missing, []);
 });
+
+test('draft: a section of several big templates is split by template, each capped', () => {
+  const db = crawlOf([
+    ['https://acme.com/', page('Acme', 'Anvils.'), { link_score: 10 }],
+    ...Array.from({ length: 20 }, (_, i) => [`https://acme.com/guides/g-${i}`, page(`Guide ${i}`, `Guide number ${i}.`), { link_score: 20 - i }]),
+    ...[1, 2, 3].map((i) => [`https://acme.com/blog/p-${i}`, page(`Post ${i}`, `Post number ${i}.`)]),
+    ['https://acme.com/news/one', page('One news', 'A single news item.')],
+  ]);
+  const d = draftLlmsTxt(db);
+  assert.deepEqual(d.sections.map((s) => [s.name, s.links.length]), [['Guides', 15], ['Blog', 3], ['Articles', 1]]);
+  assert.equal(d.sections[0].links[0].title, 'Guide 0', 'the most linked first');
+});
