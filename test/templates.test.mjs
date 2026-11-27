@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { DatabaseSync } from 'node:sqlite';
 import { extract } from '../lib/extract.mjs';
-import { SCHEMA, PAGE_COLUMNS } from '../lib/schema.mjs';
+import { SCHEMA, PAGE_COLUMNS, upgradeSchema } from '../lib/schema.mjs';
 import { pathShape, templatesOf } from '../lib/templates.mjs';
 
 const product = (name, id, price) => `<html><head><title>${name}</title>
@@ -69,4 +69,14 @@ test('templates: one per path shape and layout, biggest first, with samples and 
   assert.deepEqual(t[0].samples, ['https://x.com/shop/d', 'https://x.com/shop/c']);
   assert.deepEqual(t[0].fields, { times: 4, prices: 4, addresses: 4, authors: 4, phones: 4, breadcrumb: 4 });
   assert.equal(t[1].struct_sig, t[2].struct_sig);
+});
+
+test('upgradeSchema: a crawl made before these columns gets them, its rows kept, then takes new writes', () => {
+  const db = new DatabaseSync(':memory:');
+  db.exec(SCHEMA.replace('  struct_sig TEXT, field_evidence TEXT, text_cut INTEGER,\n', ''));
+  db.prepare('INSERT INTO pages (url, title) VALUES (?, ?)').run('https://x.com/', 'Home');
+  assert.deepEqual(upgradeSchema(db), ['struct_sig', 'field_evidence', 'text_cut']);
+  assert.deepEqual(upgradeSchema(db), []);
+  db.prepare(`INSERT OR REPLACE INTO pages (${PAGE_COLUMNS.join(',')}) VALUES (${PAGE_COLUMNS.map(() => '?').join(',')})`).run(...PAGE_COLUMNS.map((c) => (c === 'url' ? 'https://x.com/a' : null)));
+  assert.equal(db.prepare('SELECT count(*) AS n FROM pages').get().n, 2);
 });
