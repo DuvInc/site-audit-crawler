@@ -18,6 +18,7 @@ test('role: the address, then what the pages show at one place, then what they d
   assert.equal(roleOf(tpl({ shape: '/vs/*', fields: { prices: 10 }, paths: { prices: { path: 'td', pages: 10 } } })).role, 'other');
   assert.equal(roleOf(tpl({ shape: '/stores/*', fields: { addresses: 8, phones: 8 }, paths: { addresses: { path: 'address', pages: 8 }, phones: { path: 'a', pages: 8 } } })).role, 'location');
   assert.equal(roleOf(tpl({ shape: '/guides', pages: 1 }), ['/guides', '/guides/*']).role, 'listing');
+  assert.equal(roleOf(tpl({ shape: '/blog', pages: 1, schema_types: { BlogPosting: 1 } }), ['/blog', '/blog/*']).role, 'listing');
   assert.deepEqual(roleOf(tpl({ shape: '/docs/*' })), { role: 'other', why: 'no rule fits', decided: 'open' });
 });
 
