@@ -20,6 +20,8 @@ test('role: the address, then what the pages show at one place, then what they d
   assert.equal(roleOf(tpl({ shape: '/docs/*/*' })).role, 'docs');
   assert.equal(roleOf(tpl({ shape: '/authors/*' })).role, 'profile');
   assert.equal(roleOf(tpl({ shape: '/careers/*' })).role, 'job');
+  assert.equal(roleOf(tpl({ shape: '/videos/*' })).role, 'video');
+  assert.equal(roleOf(tpl({ shape: '/talks/*', schema_types: { VideoObject: 4 } })).role, 'video');
   assert.equal(roleOf(tpl({ shape: '/stores/*', fields: { addresses: 8, phones: 8 }, paths: { addresses: { path: 'address', pages: 8 }, phones: { path: 'a', pages: 8 } } })).role, 'location');
   assert.equal(roleOf(tpl({ shape: '/guides', pages: 1 }), ['/guides', '/guides/*']).role, 'listing');
   assert.equal(roleOf(tpl({ shape: '/blog', pages: 1, schema_types: { BlogPosting: 1 } }), ['/blog', '/blog/*']).role, 'listing');
