@@ -21,6 +21,7 @@ const HELP = `site-audit: crawl a website into SQLite and audit it.
   site-audit gsc <dir>                 join Google Search Console data
   site-audit ai <dir>                  the AI layer (OpenRouter, paid, cached, capped)
   site-audit compare <old> <new>       what changed between two analysed crawls
+  site-audit llms <dir>                a draft llms.txt from the crawl, and the site's own file checked
 
 Crawl     --max 5000  --concurrency 5  --include <regex>  --exclude <regex>  --no-external
           --user-agent <string>  --out <folder, default audits>  --dir <exact crawl folder>
@@ -60,6 +61,8 @@ const lib = {
   ai: () => import('../lib/ai.mjs'),
   openrouter: () => import('../lib/openrouter.mjs'),
   compare: () => import('../lib/compare.mjs'),
+  llms: () => import('../lib/llms-txt.mjs'),
+  db: () => import('../lib/db.mjs'),
 };
 const log = (s) => console.log(s);
 
@@ -192,6 +195,32 @@ try {
     case 'ai':
       await doAi(resolve(need(args[0], 'a crawl folder')));
       break;
+    case 'llms': {
+      const dir = resolve(need(args[0], 'a crawl folder'));
+      const [{ draftLlmsTxt, checkLlmsTxt }, { openCrawlDb, readMeta }] = await Promise.all([lib.llms(), lib.db()]);
+      const db = openCrawlDb(dir);
+      try {
+        const draft = draftLlmsTxt(db);
+        const { writeFileSync } = await import('node:fs');
+        writeFileSync(join(dir, 'llms.txt'), draft.text);
+        log(`Draft: ${draft.links} links (${draft.markdown_links} to Markdown copies) of ${draft.eligible_pages} pages in ${draft.lang ?? 'the main language'} -> ${join(dir, 'llms.txt')}`);
+        const origin = new URL(readMeta(db).start_url).origin;
+        const res = await fetch(`${origin}/llms.txt`, { signal: AbortSignal.timeout(10_000) }).catch(() => null);
+        if (!res?.ok) {
+          log(`${origin}/llms.txt: ${res ? res.status : 'no answer'}`);
+          break;
+        }
+        const c = checkLlmsTxt(db, await res.text());
+        const by = Object.groupBy(c.links, (l) => l.verdict);
+        log(`${origin}/llms.txt: ${c.links.length} links (${Object.entries(by).map(([k, v]) => `${v.length} ${k}`).join(', ')}), ${c.problems.length} problems, ${c.missing.length} important pages missing`);
+        for (const p of c.problems) log(`  line ${p.line ?? '-'}: ${p.message}`);
+        for (const l of c.links.filter((x) => !['ok', 'markdown', 'external'].includes(x.verdict))) log(`  ${l.verdict}: ${l.url}`);
+        for (const m of c.missing) log(`  missing: ${m.url}`);
+      } finally {
+        db.close();
+      }
+      break;
+    }
     case 'compare': {
       const { compare } = await lib.compare();
       const out = compare(resolve(need(args[0], 'the older crawl folder')), resolve(need(args[1], 'the newer crawl folder')));

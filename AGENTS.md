@@ -16,6 +16,7 @@ lib/
   structured-data.mjs the schema.org catalogue: types, fields, Google's levels, hints, builder, validator
   templates.mjs       the pages of one layout: path shape (translations together) split by structure signature
   schema-plan.mjs     the structured data plan per template: role by rules, types from the catalogue, each field's state
+  llms-txt.mjs        llms.txt: read and check a site's file against the crawl, draft one by section from template roles
   db.mjs              node:sqlite: create and open <dir>/crawl.db
   durable-object-db.mjs  the database handle over a Durable Object's ctx.storage
   analyze-core.mjs    depth, inlinks, link score, indexability, duplicates, then every rule, on a handle
@@ -40,7 +41,7 @@ skills/site-audit/    the procedure for an agent that uses the tool
 
 ```bash
 npm install
-npm test                                   # 91 tests, no key, no network beyond localhost
+npm test                                   # 95 tests, no key, no network beyond localhost
 npm run example                            # regenerate examples/ from the fixture site
 node bin/site-audit.mjs run <url>          # crawl, analyse, render; add --gsc google|treg and --ai
 node bin/site-audit.mjs --help

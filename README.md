@@ -73,7 +73,7 @@ Without any key or account, you get the crawl, every control that does not need 
 | `report.md` | a person |
 | `crawl.db` | everyone: the raw data, `sqlite3 crawl.db` |
 
-Each step also runs alone: `crawl`, `analyze`, `render`, `gsc`, `ai`, `compare`. `node bin/site-audit.mjs --help` lists the options (URL budget, concurrency, include and exclude patterns, user-agent, sample size, Search Console window, AI budget and models).
+Each step also runs alone: `crawl`, `analyze`, `render`, `gsc`, `ai`, `compare`, and `llms`, which writes a draft `llms.txt` next to the crawl and checks the site's own file. `node bin/site-audit.mjs --help` lists the options (URL budget, concurrency, include and exclude patterns, user-agent, sample size, Search Console window, AI budget and models).
 
 ## Search Console
 
@@ -175,13 +175,21 @@ Each page stores `struct_sig`, a 16-character signature of its layout (where its
 `templatesOf(db)` groups the pages by path shape and signature, translations together: 730 pages of ai-glot.com make 19 templates, 581 of atelier201.com 25. Each comes with its most linked pages as samples, how many of its pages show each field, and the JSON-LD types already on them, so structured data (or any fix) is decided once per template.
 
 `schemaPlan(db)` turns them into a structured data plan, rules only, no model. For each template it gives:
-- **its role** (home, about, contact, legal, pricing, article, docs, profile, job, comparison, product, location, event, tool, listing), with the reason: the address, a field shown at one place on most of its pages, or a type it already declares. A price alone does not make a product (pricing tables sit on comparison pages too). A template no rule places is `open`, for a decision model.
+- **its role** (home, about, contact, legal, pricing, article, docs, profile, job, comparison, product, location, event, tool, listing), with the reason: the address, a field shown at one place on most of its pages, or a type it already declares. A price alone does not make a product (pricing tables sit on comparison pages too). A template no rule places is `open`: `schemaPlan(db, { roles: { '/features/*': 'service' } })` takes the role a decision model chose for it (`decided: "model"`), and never overrides a role the rules gave.
 - **the types to carry**, from the catalogue's roles.
 - **each field's state on its sample pages**: `valid`, `wrong` (with the reason), `on_page` (with the element that shows it, for example `header.post-head>time`), or `missing`.
 
 `todo` counts what the template can fix from its own pages. `to_supply` counts what only the owner can give (a VAT number, an address), never guessed. On atelier201.com it found the home page without `Organization` and the tool pages without a breadcrumb. On ai-glot.com there is nothing left to fix from the pages, only the owner's details.
 
 Memory stays bounded by the number of pages, not of links: link counts are SQL aggregates, the link graph is streamed into integer arrays, and near duplicates are found by banding the simhash (exact for the 5-bit threshold, without comparing every pair). Bodies are read with a byte cap after decompression (`maxBodyBytes`, 5 MB). The render step and the AI layer still need Node.
+
+### llms.txt
+
+`draftLlmsTxt(db)` writes an [llms.txt](https://llmstxt.org) from the crawl: the site's name (`og:site_name`, else the home page title), the home page's meta description as the summary, then the pages in the home page's language by section from their template's role (Product, Docs, Comparisons, Articles, Events, Company, Pages; legal pages and indexes under `Optional`), the most clicked in Search Console and the most linked first, 50 at most. Only pages that answer 200, are indexable, are their own canonical and copy no other page. A page that declares a Markdown copy (`<link rel="alternate" type="text/markdown">`) is listed by that copy. On lookio.app: 50 links of 241 pages, 28 of them to Markdown copies.
+
+`checkLlmsTxt(db, text)` reads a site's file: the problems (a web page served instead of Markdown, no H1, which is the one required part, list items without a link, relative links), each link against the crawl (`ok`, `markdown`, `redirect`, `error`, `noindex`, `external`, `not_crawled` for the caller to fetch), and the important pages it leaves out.
+
+What it is worth, said plainly: no major assistant has committed to reading the file, and Google says it has no effect on Search. It costs nothing and helps the agents that look for it; a Markdown copy of each page does more.
 
 ## What this is not
 
