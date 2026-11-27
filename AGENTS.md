@@ -41,7 +41,7 @@ skills/site-audit/    the procedure for an agent that uses the tool
 
 ```bash
 npm install
-npm test                                   # 95 tests, no key, no network beyond localhost
+npm test                                   # 96 tests, no key, no network beyond localhost
 npm run example                            # regenerate examples/ from the fixture site
 node bin/site-audit.mjs run <url>          # crawl, analyse, render; add --gsc google|treg and --ai
 node bin/site-audit.mjs --help
