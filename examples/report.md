@@ -34,7 +34,7 @@ Crawled on 2026-01-01: 21 URLs in 1 s (20 internal, 1 external). Every line belo
 
 ## Findings
 
-50 controls with findings, out of 121 run.
+51 controls with findings, out of 121 run.
 
 | Priority | Category | Control | URLs | Examples |
 | --- | --- | --- | --- | --- |
@@ -52,6 +52,7 @@ Crawled on 2026-01-01: 21 URLs in 1 s (20 internal, 1 external). Every line belo
 | medium | H1 | Missing | 1 | /about |
 | medium | Sitemaps | Non-indexable URLs in sitemap | 1 | /noindex-page (Noindex) |
 | medium | Sitemaps | Orphan URLs (in a sitemap, reached by no internal link) | 1 | /orphan |
+| medium | Page titles | Repeats one of its segments (usually the site name, added twice by a template) | 1 | /en/ (Widgets in English \| Fixture widgets \| Fixture widgets) |
 | medium | Canonicals | Missing | 8 | /about<br>/blog/post-1 |
 | medium | Response codes | Internal temporary redirect (302, 303, 307): a weak signal, Google keeps the old URL | 2 | /older-page (302 -> /about)<br>/temp (307 -> /team) |
 | medium | AI readiness | AI crawlers disallowed in robots.txt | 1 | / (GPTBot) |
@@ -71,9 +72,9 @@ Crawled on 2026-01-01: 21 URLs in 1 s (20 internal, 1 external). Every line belo
 | low | Social | Missing X cards | 9 | /<br>/about |
 | low | Social | Missing Open Graph tags | 8 | /about<br>/blog/post-1 |
 | low | Structured data | Missing | 8 | /<br>/about |
-| low | Page titles | Below 30 characters | 8 | /about (8: About us)<br>/blog/post-1 (25: The 2019 guide to widgets) |
+| low | Page titles | Below 30 characters | 7 | /about (8: About us)<br>/blog/post-1 (25: The 2019 guide to widgets) |
 | low | Links | Fewer than 5 pages link to it (Zyppy study: the group with the fewest Google clicks) | 6 | /blog/post-1 (1 linking page(s), link score 35.6)<br>/dup-a (1 linking page(s), link score 35.6) |
-| low | Page titles | Below 200 pixels (estimated) | 6 | /about (82 px: About us)<br>/dup-a (106 px: Duplicate A) |
+| low | Page titles | Below 200 pixels (estimated) | 5 | /about (82 px: About us)<br>/dup-a (106 px: Duplicate A) |
 | low | Meta description | Below 70 characters | 3 | /dup-a (69: First of two pages with the same body text, to test exact duplicates.)<br>/fr/ (67: La version française de la page des widgets de test, avec son lien.) |
 | low | H1 | Duplicate | 2 | /dup-a (Same)<br>/dup-b (Same) |
 | low | AI readiness | No /llms.txt (optional: Google says it does not use it) | 1 | / (status 404, text/html) |
@@ -84,7 +85,7 @@ Crawled on 2026-01-01: 21 URLs in 1 s (20 internal, 1 external). Every line belo
 | low | AI readiness | Article without a single link to an outside source (GEO study: citing sources raised visibility in AI answers) | 1 | /blog/post-1 (565 words, 0 figure(s)) |
 | low | Images | PNG, JPEG or GIF over 100 kB (web.dev: prefer AVIF or WebP) | 1 | /img/big.png (image/png, 120 kB) |
 | low | Images | Missing size attributes | 1 | / (1 image(s), e.g. /img/big.png) |
-| low | Structured data | Rich result validation warnings (subset) | 1 | /blog/post-1 (Article without datePublished) |
+| low | Structured data | Structured data missing recommended fields, or in a format Google rejects | 1 | /blog/post-1 (Article without datePublished; Article without dateModified; Article without author.url) |
 | low | Structured data | Home page without WebSite structured data (name and url): the source Google prefers for the site name | 1 | / |
 | low | Sitemaps | Sitemap URLs without lastmod | 1 | / (1 of 4 URLs) |
 | low | Page titles | Same as h1 | 1 | /blog/post-1 (The 2019 guide to widgets) |
@@ -93,7 +94,7 @@ Crawled on 2026-01-01: 21 URLs in 1 s (20 internal, 1 external). Every line belo
 
 | Section | Indexable pages | Words (avg) | Link score (avg) | Linking pages (avg) | Medium and high findings |
 | --- | --- | --- | --- | --- | --- |
-| (home) | 3 | 244 | 57.1 | 4.3 | 12 |
+| (home) | 3 | 244 | 57.1 | 4.3 | 13 |
 | about | 1 | 226 | 91.3 | 11 | 6 |
 | blog | 1 | 565 | 35.6 | 1 | 5 |
 | dup-a | 1 | 240 | 35.6 | 1 | 5 |
@@ -160,7 +161,7 @@ Indexable pages least served:
 
 | Slowest responses | TTFB |
 | --- | --- |
-| /team | 1 ms |
+| /team | 3 ms |
 | / | 0 ms |
 | /about | 0 ms |
 | /blog/post-1 | 0 ms |

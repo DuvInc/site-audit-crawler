@@ -22,7 +22,8 @@
     "./treg": "./lib/treg.mjs",
     "./ai": "./lib/ai.mjs",
     "./openrouter": "./lib/openrouter.mjs",
-    "./compare": "./lib/compare.mjs"
+    "./compare": "./lib/compare.mjs",
+    "./structured-data": "./lib/structured-data.mjs"
   },
   "scripts": {
     "audit": "node bin/site-audit.mjs run",

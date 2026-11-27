@@ -275,7 +275,7 @@
   "slowest": [
     {
       "url": "http://localhost:4321/team",
-      "ttfb_ms": 1
+      "ttfb_ms": 3
     },
     {
       "url": "http://localhost:4321/",
@@ -721,6 +721,20 @@
       ]
     },
     {
+      "code": "title_repeated_segment",
+      "category": "Page titles",
+      "priority": "medium",
+      "kind": "issue",
+      "label": "Repeats one of its segments (usually the site name, added twice by a template)",
+      "urls": 1,
+      "examples": [
+        {
+          "url": "http://localhost:4321/en/",
+          "detail": "Widgets in English | Fixture widgets | Fixture widgets"
+        }
+      ]
+    },
+    {
       "code": "canonical_missing",
       "category": "Canonicals",
       "priority": "medium",
@@ -1152,7 +1166,7 @@
       "priority": "low",
       "kind": "opportunity",
       "label": "Below 30 characters",
-      "urls": 8,
+      "urls": 7,
       "examples": [
         {
           "url": "http://localhost:4321/about",
@@ -1171,8 +1185,8 @@
           "detail": "11: Duplicate B"
         },
         {
-          "url": "http://localhost:4321/en/",
-          "detail": "18: Widgets in English"
+          "url": "http://localhost:4321/fr/",
+          "detail": "19: Widgets en français"
         }
       ]
     },
@@ -1212,7 +1226,7 @@
       "priority": "low",
       "kind": "opportunity",
       "label": "Below 200 pixels (estimated)",
-      "urls": 6,
+      "urls": 5,
       "examples": [
         {
           "url": "http://localhost:4321/about",
@@ -1227,12 +1241,12 @@
           "detail": "106 px: Duplicate B"
         },
         {
-          "url": "http://localhost:4321/en/",
-          "detail": "171 px: Widgets in English"
-        },
-        {
           "url": "http://localhost:4321/fr/",
           "detail": "182 px: Widgets en français"
+        },
+        {
+          "url": "http://localhost:4321/team",
+          "detail": "82 px: About us"
         }
       ]
     },
@@ -1393,12 +1407,12 @@
       "category": "Structured data",
       "priority": "low",
       "kind": "opportunity",
-      "label": "Rich result validation warnings (subset)",
+      "label": "Structured data missing recommended fields, or in a format Google rejects",
       "urls": 1,
       "examples": [
         {
           "url": "http://localhost:4321/blog/post-1",
-          "detail": "Article without datePublished"
+          "detail": "Article without datePublished; Article without dateModified; Article without author.url"
         }
       ]
     },
@@ -1452,7 +1466,7 @@
       "words_avg": 244,
       "link_score_avg": 57.1,
       "inlinks_avg": 4.3,
-      "issues_medium_high": 12
+      "issues_medium_high": 13
     },
     {
       "section": "about",

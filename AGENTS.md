@@ -13,6 +13,7 @@ lib/
   crawl.mjs           the Node loop around crawl-core, writing <dir>/crawl.db
   extract.mjs         everything read from one HTML document (cheerio), raw or rendered
   robots.mjs          robots.txt parsing and matching (RFC 9309)
+  structured-data.mjs the schema.org catalogue: types, fields, Google's levels, hints, builder, validator
   db.mjs              node:sqlite: create and open <dir>/crawl.db
   durable-object-db.mjs  the database handle over a Durable Object's ctx.storage
   analyze-core.mjs    depth, inlinks, link score, indexability, duplicates, then every rule, on a handle
@@ -37,7 +38,7 @@ skills/site-audit/    the procedure for an agent that uses the tool
 
 ```bash
 npm install
-npm test                                   # 68 tests, no key, no network beyond localhost
+npm test                                   # 80 tests, no key, no network beyond localhost
 npm run example                            # regenerate examples/ from the fixture site
 node bin/site-audit.mjs run <url>          # crawl, analyse, render; add --gsc google|treg and --ai
 node bin/site-audit.mjs --help
