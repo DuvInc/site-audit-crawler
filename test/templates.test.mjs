@@ -68,6 +68,8 @@ test('templates: one per path shape and layout, biggest first, with samples and 
   assert.deepEqual(t.map((x) => [x.shape, x.pages]), [['/shop/*', 4], ['/blog/*', 1], ['/shop/*', 1]]);
   assert.deepEqual(t[0].samples, ['https://x.com/shop/d', 'https://x.com/shop/c']);
   assert.deepEqual(t[0].fields, { times: 4, prices: 4, addresses: 4, authors: 4, phones: 4, breadcrumb: 4 });
+  assert.deepEqual(t[0].paths.prices, { path: 'article.post>div.price-box>span.amount', pages: 4 });
+  assert.deepEqual(t[1].paths, {});
   assert.equal(t[1].struct_sig, t[2].struct_sig);
 });
 

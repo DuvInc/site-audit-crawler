@@ -24,7 +24,8 @@
     "./openrouter": "./lib/openrouter.mjs",
     "./compare": "./lib/compare.mjs",
     "./structured-data": "./lib/structured-data.mjs",
-    "./templates": "./lib/templates.mjs"
+    "./templates": "./lib/templates.mjs",
+    "./schema-plan": "./lib/schema-plan.mjs"
   },
   "scripts": {
     "audit": "node bin/site-audit.mjs run",
